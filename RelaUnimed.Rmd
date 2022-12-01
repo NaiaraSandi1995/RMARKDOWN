@@ -1,0 +1,278 @@
+---
+title: <center> <font size = 7> Operadoras de saúde:</center>
+subtitle: <center> <font size = 6>Unimed BH e concorrência  <br> <font size = 5> 
+author:
+   - name: <br><center> Naiara Alcantara 
+     affiliation: <center> <font size = 2>Analista de Mercado responsável
+   - name: <br> <center> <font size = 4> Belo Horizonte
+date: <center> `r format(Sys.time(), '%d, %B %Y')`
+output:
+  html_document: 
+    toc: yes
+    self_contained: no
+    number_sections: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    fig_caption: yes
+    highlight: zenburn
+    theme: journal
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  word_document:
+    toc: yes
+    toc_depth: '3'
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+------------------------------------------------------------------------
+
+![](Slide2.JPG)
+
+------------------------------------------------------------------------
+
+
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri( "unimed.jpg"), 
+               alt = 'ufpr',
+               style = 'height: 70px; position: absolute; width: 17%; top:0; right:0')
+
+```
+
+```{r setup, include = FALSE, out.width = '50%', warning= FALSE, echo=FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo = FALSE)
+
+```
+
+<style>
+
+```{=html}
+<style> 
+body {
+  color: #708090;
+  font-family: Cailibri
+  backgroud-color: #F5F5F5
+}
+</style>
+```
+```{r echo = FALSE, warning = FALSE, include = FALSE}
+library(dplyr)
+library(plotly)
+library(knitr)
+library(rmarkdown)
+library(sjPlot)
+library(multilevel)#ativa o pacote para execução do modelo ANOVA
+library(lme4)
+options(scipen = 999)
+library(ggplot2)
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
+
+```
+
+```{r include = FALSE}
+library(haven)
+library(memisc)
+library(desc)
+library(descr)
+library(RColorBrewer) 
+library(gridExtra)
+library(kableExtra)
+library(readxl)
+
+```
+
+# Metodologia e objetivos {.tabset .tabset-fade}
+
+<font size = 4>
+
+-   Método: Quantitativo
+-   Dados secundários: Agência Nacional de Saúde Suplementar (ANS)
+-   Universo: Operadoras de planos de saúde
+
+<font size="2"> Para mais informações acessar: </font> [Clique
+aqui](http://www.ans.gov.br/anstabnet/notas_beneficiario.htm)
+
+<font size="2">Os dados disponíveis são oriundos do Sistema de
+Informações de Beneficiários (SIB),Sistema de Cadastro de Operadoras
+(Cadop) e Sistema de Registro de Produtos (RPS), todos geridos pela ANS
+</font>
+
+</font>
+
+## <font size = 5> Descrição dos dados:
+
+<font size = 4.5>
+
+-   Dados financeiros: 902 operadoras
+-   Dados sobre reclamações: 1315 operadoras
+-   Dados sobre beneficiários:476 operadoras
+-   Merge: 425 com correspondência exata pelo ID
+
+## <font size = 5> Objetivo:
+
+<font size = 4.5>
+
+-   A partir dos dados da ANS, apresentar os principais aspectos
+    relacionados aos beneficiários, financeiro e reclamações, destacando
+    a posição da Unimed BH em relação a concorrência.
+
+\vspace{5truemm}
+
+# Análises {.tabset .tabset-fade}
+
+<font size = 4.5>
+
+<font size = 4.5>
+
+```{r, echo=FALSE}
+#Naiara lembrar que não é possível inserir imagens de determinados sites, as imagens devem estar baixadas no computador ou então o r tem q ser capaz de puxar essas imagens
+```
+
+## BENEFICIÁRIOS:
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("BENEFICIARIOS (1).png")
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("BENEFICIARIOS (3).jpg")
+```
+
+## FINANCEIRO:
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("FINANCEIRO (3).jpg")
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("FINANCEIRO (4).jpg")
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("FINANCEIRO (5).jpg")
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("FINANCEIRO (7).jpg")
+```
+
+\vspace{5truemm}
+
+## RECLAMAÇÕES:
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("RECLAMACOES (4).jpg")
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("RECLAMACOES (5).jpg")
+```
+
+```{r, echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("RECL.jpg")
+```
+
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
+DADOSTOTAIS <- read_excel("~/1- Projeto Naiara/NAIARA/PROCESSO UNIMED/Relatório no R/DADOSTOTAIS.xlsx")
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning = FALSE, out.width="80%"}
+
+DADOSTOTAIS$`01.06.2022` <- log(DADOSTOTAIS$`01.06.2022`)
+DADOSTOTAIS$TOTAL <- log(DADOSTOTAIS$TOTAL)
+
+# basic scatterplot
+GRA1 <- ggplot(DADOSTOTAIS, aes(x=`01.06.2022`, y=TOTAL, 
+                          color =`01.06.2022` , 
+                          size = TOTAL)) + 
+  geom_point(shape = 21, size = 3,
+             fill = "black", stroke = 2, alpha = 0.2)+
+  geom_count(alpha=0.3)  + theme_classic()
+
+Gra2 <- GRA1 + theme(text = element_text(family = "serif", size = 14),
+                     rect = element_blank(),
+                     panel.grid = element_blank(),
+                     title = element_text(color = "black"),
+                     axis.line = element_line(color = "black")) +
+  theme(legend.position="none")
+
+
+Gra2 +  
+  geom_smooth(method =  "lm", se = F, col = "red")+
+  theme(text = element_text(family = "serif", size = 14),
+        rect = element_blank(),
+        panel.grid = element_blank(),
+        title = element_text(color = "black"),
+        axis.line = element_line(color = "black")) +
+  theme(legend.position="none")+
+  labs(y= "Total de reclamações",
+       x= "Total de beneficiários")
+
+
+
+
+```
+
+O teste de correlation de Spearman's\* mostra que:  
+* p \< 0,05 (0,000000000003202)  
+* Estimativa = 0,3248271  
+
+Há uma relação estatisticamente significativa. O sinal da estimativa é positivo, contudo, o resultado está muito distante da pontuação máxima (1). Logo, a quantidade de beneficiários (permanência/aumento) está pouco relacionada com a quantidade de reclamações.
+
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
+options(scipen = 999)
+
+cor.test(~TOTAL + `01.06.2022`, data = DADOSTOTAIS,
+         method = "spearman", continuity = F, 
+         conf.level = 0.95)
+
+
+
+```
+
+\vspace{5truemm}
+
+# Considerações finais
+
+<font size = 4.5>
+
+-   É bastante perceptível que todos os dados (beneficiários, financeiro
+    e reclamações) estão diretamente relacionados à COVID-19. Desde o
+    início da pandemia, as operadoras cresceram exponencialmente. Muito
+    embora a crise financeira - intensificada pela pandemia - tenha
+    ocasionado uma expressiva taxa de cancelamento dos planos de saúde,
+    o aumento das novas contratações foi significativamente maior, por
+    dois fatores: i) a dificuldade de acesso a serviços de saúde na rede
+    pública; e ii) o receio de infecção pela SARS-Cov-2;
+
+-   A Unimed BH foi a operadora que mais cresceu: sozinha aumentou em
+    4,2% o total de beneficiários em todo o setor de planos de saúde.
+    Considerando apenas seus beneficiários, teve um crescimento de 7,7%.
+
+-   A análise do setor financeiro revela que as receitas das operadoras
+    estão na casa dos bilhões de reais. A Unimed BH está entre as dez
+    que mais possuem receitas gerais e advindas dos planos. Igualmente,
+    a Unimed BH consta no ranking das dez maiores empresas em despesas..
+
+-   Sobre as reclamações, percebe-se significativos aumentos gerais. A
+    Unimed BH, apesar de constar no "top 10" em reclamações, registra
+    poucas reclamações em comparação com as empresas que ocupam as
+    primeiras posições na lista. Por exemplo, no mês de agosto de 2022,
+    a Unimed BH recebeu 1,2% do total de reclamações, enquanto que a
+    Notre Dame Intermédica recebeu 12,8%. Considerando apenas essas duas
+    empresas, haveria uma disparidade de cerca de 90% de reclamações.
+
+<center>
+
+<kbd> <font size="4.5"> O cenário é bastante positivo para a Unimed BH,
+pois figura entre as maiores empresas em número de beneficiários e
+receitas, além de registrar poucas reclamações. </kbd>
+
+<center>![](images%20(3)%20-%20Copia.jpeg){width="364"}
