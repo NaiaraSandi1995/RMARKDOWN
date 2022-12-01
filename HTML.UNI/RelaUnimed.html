@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>RelaUnimed.knit</title>
+
+<script src="RelaUnimed_files/header-attrs-2.16/header-attrs.js"></script>
+<script src="RelaUnimed_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="RelaUnimed_files/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="RelaUnimed_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="RelaUnimed_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="RelaUnimed_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="RelaUnimed_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="RelaUnimed_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="RelaUnimed_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="RelaUnimed_files/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><center>
+<font size = 7> Operadoras de saúde:
+</center></h1>
+<h3 class="subtitle"><center>
+<font size = 6>Unimed BH e concorrência <br> <font size = 5></h3>
+<h4 class="author"><br>
+<center>
+Naiara Alcantara</h4>
+<address class="author_afil">
+<center>
+<font size = 2>Analista de Mercado responsável<br><h4 class="author"><br>
+<center>
+<font size = 4> Belo Horizonte</h4>
+<h4 class="date"><center>
+07, novembro 2022</h4>
+
+</div>
+
+
+<hr />
+<p><img src="Slide2.JPG" /></p>
+<hr />
+<p><img src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAA3sAAAE9CAYAAACyU3u7AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAJApJREFUeNrs3UFsXNW9P/ALQvAXDYqfYhZkgaebAFJRDOmGqlGmm+QtWiV57eYBeriLorfD7a4VEkZCvB01u4ouMBLt25QXI97iHzYYpaIbQh1RKWk2dVgkCxw1ERT9y4b//MYzqWs8zr0zd+aee+fzka4cgj0zuXN953zPOb9z7vjqq6+yhpvpHPO9Y2bb11bnmMsAAIAmu9A5bvSO9c6x0TvWe3/XWHc0MOy1e0c/4Al0AADAbq70Ql8ca71D2EtIq3Oc6h3HXK8AAMAI3u6FvtVsawRQ2Ksg4C32Ap6ROwAAYBxiCuhKXYNfncLeTC/cRcg77LoDAAAmHPyWe8GvFrV+dQh7rc6x1At6+11jAABAhW72Al9klA1hbzjtbGsU76TrCQAASNAb2dY0zzVhL3/Ii5RssRUAAKAO3u8cC1liI313JvRaWr1U/J6gBwAA1Ejkl7/08kwrlReVwsheLLwS0zVfcI0AAAA1FzV9sZDL0rSHvXYv/U50+4SbX36RrV//pPvnjc82O8enLkkAAGiQ1n33d47Z7p+PPfBwFS8hNmxfyCqs56sq7M30ku5z436i969d6gS7K9n65ifZxueb2drVi658AACYQu2Dj2StfbPZ/OyD2fyBuUmFwFd72Wfi2zVUEfba2RhH8y5c/yRb3TifrXVCnmAHAADcLgC2O6HvVOtIdvjAg+N6mhjli63k1psc9iLRll6b9/bGR92AF8eNL79wxQIAAIXN3H1vN/QtPHR0XKN+P8226vkaFfZi2mZsPFjaKptXPt/Mlj8+2w14UXcHAABQlqj3Wzh0tBv85vbNlvnQb2dbtXxjn9Y5ibA33wt6pUzbjBq8fsgDAAAYtxjtW3z0RJmjfRd6gW+s0zrHHfZiXupK59hfRshbOn9GHR4AAFCJqO9bOnK6rNAXWzS0xxn4xhn2Iqm+LuQBAABC30A/zrYGyGoT9kYOelGTt/jBb0zXBAAAkhQ1fcvfeSrbf/e9SQa+cYS9pWzEFTdf/dPZbOnDM1bWBAAAkhYreC59+3T23LdOJBf4yg57i53jl8P+cOyRt7D2Wrbe+QoAAFAXMbVzpf2TUVfuLDXwlRn2FrIRpm4azQMAAOosRvmWv/N09syh7yYR+MoKe0MHvZudcBe1eSuXz7k6AACA2iuhlq+UwFdG2IvtFc4M84OmbQIAAE00f+DBbPXE4ijTOh/LRtyWYdSwFxumr2VD7KMXQa/9zsumbQIAAI0U0zrXfvCL7HAn+A1h5H34Rgl7M70nniv6g29c/n13RA8AAKDpgW+EOr4LvcB3Y5gfvnOE170q6AEAAAwWMxkj/0QOGsLhbITavWHD3lLnOCboAQAA3N4Ige9ktrXFXWHDTONsd473BD0AAIBiVtrPDjuls/CCLUXD3lB1eoIeAADAltXji9nJ1uNFf+xKtrVAZu76vaLTOJeKBr3+9goAAABsTem8UHz7ubleHsutyMheOys4fdP2CgAAAF8Xq3Su/+ilYfbh+162tf3dbeUd2YvpmytFXsHN3qozgh4AAMA/i5x06uxyNzcVlDuX5Q17sfpLoembix/8JlsvPjQJAAAwFSIvRW4qKPd0zjzTOFud4y9Fnv3VP50d5kUDAABMnSFW6LyZbS3WsrHXN+UZ2Vsq8qxXPt/Mlj484x0DAADIYfGDN7s5qoD9eXLa7cJeu3M8U+RZY96pOj0AAIB8bnTXO/l10R+LnNYaJewtFXm2mL6pTg8AAKCYtasXu3mqoD3z2l41e+2swFYLMew4/7vnjeoBAAAMIbZj2HjylWx/52sB38wG1O7tNbK3WOQZYkEWQQ8AAGA4kaeGWOhyadD/GBT2Wp3jZN5Hf//apWx147x3BwAAYAQrl89lF4qVxg2s3buzaDrc9ZvPW30TAACgDIt/KDy6t5g37M10jlN5HzVG9aKYEAAAgNFFvoqcVcBC3rAXQW9/3kc1qgcAAFCugjlr/26Bb7ewl3thFqN6AAAA5StjdG9n2Gt1jsN5H23547PeBQAAgDFY+fO5It9+LNuxUMvOsJd7VC/21bMCJwAAwJjC3uVz3dxVwKm9wl7uhVmM6gEAAIw58BUb3VsYFPZanWMu76MY1QMAABhz2LtcKOwdzrZN5dwe9nKP6r298VG28dmmMw8AADBGkbsKbrLeHinsGdUDAACYjIKje6d2C3vHhD0AAIC0FMxf7Z1hr533J2MI8caXXzjjAAAAE1BwKmdssD4/VNgzqgcAADBZa9cuFvn29vawN5//SS450wAAABO0uvFRkW+fHy7sXb3oTAMAAExQwRx2K+zNZDn313vfqB4AAEAlCtTtHe6HvdyjeuvXrzjDAAAAFShat1cs7G1+4gwDAABUIFblLKDVn8aZ78E/33SGAQAAKrB+vdDgW6vQyJ7FWQAAACoKe5uFyuryj+zdtJE6AABAZW4Uy2TdsNfKlSKvq9cDAACoUoEVOburcc45ZQAAAOkrMLp37M6831lw5RcAAAAqVCDsfepsAQAAVKjIopl3Ol0AAADNI+wBAAAIewAAAAh7AAAACHsAAAAIewAAAAh7AAAAwh4AAADCHgAAAMIeAAAAwh4AAADCHgAAgLDnFAAAAAh7AAAACHsAAAAIewAAAAh7AAAACHsAAADCHgAAAMIeAAAAwh4AAADCHgAAAMIeAACAsAcAAICwBwAAgLAHAACAsAcAAICwBwAAgLAHAAAg7AEAAFBbdzkFAABpat032znu/9rfr1296OQAwh4AQF0tHDqavXDk9Nf+/o7X/sPJAW7LNE4AAABhDwAAAGEPAAAAYQ8AAABhDwAAAGEPAABA2AMAAEDYAwAAQNgDAABA2AMAAEDYAwAAEPacAgAAAGEPAAAAYQ8AAIAq3OUUAGVYOHQ0W3joaGXP337nZW8C4F7UYIuPnshOtY5U8tyb/++zbPb/3Ffdv/2DN7P165+4CBD2gGq07pvNjj3wsBMBuBdRfog++Ej2yyeequz5H3vr+W7QfOHI6Uqef/XEYjb/u+ezG19+4WKgENM4AQBI1szd92arx5+r7Pl/+offdEfVls6fyd6/dqmS1zC3bzZbaT/rYkDYAwCgOWJUa38n8FXh7Y2PsuWPz97671Nnl7ObFY2unWw93p3KCsIeAAC1t3TkdGXTcq98vpktrL32T38X0yhPvftqZecjprLOH3jQhYGwBwBAfUWdXlU1ciFG8XarkVu7ejF78fyZyl5XjHTOVDTSSf1YoCWBG1k7gULypZJvWin8u1Yun8s2Ptt0kQFAzaRSp7dXuynaOlWMOvbr9069u+xCQdhLPux1bhJV9lqNLewl8O9au3ZJ2AOAGqqyTi8WYdlepzdIjPxtPPlKJa8z6vdiiutShSOM1INpnAAAJKPKOr1YfCVCXB5V1+9Fp3qMLoKwBwBA8iqv0+uEtyJ72VVev3f8OfV7CHsAAKSt6jq9CG0R3oqqcv+9mEIaU15B2AMAIFlV1+mNUv9W5f57MeV1KYH1HxD2AADga+pSpzeI+j2EPQAA2KFudXqDqN9D2AMAgJ661ukNon4PYQ8AALJ61+kNon4PYQ8AgKlW9zq9QdTvIewBADC1mlKnN4j6PYQ9AACmTtPq9AZRv4ewBwDAVGlind4g6vcQ9gAAmApNrdMbRP0ewh4AAI3X9Dq9QdTvUaW7nAKgDDEtZqnCDzMA0jUtdXp7fUZG2K1iVLNfv9d+52UX4hQysgcAwFhNU53eIOr3EPYAAGiUaavTG0T9HsIeAACNMa11eoOo30PYAwCg9qa9Tm8Q++8xSRZogZp8YEbv6PyBB7tf478Pd/48SP9DZP36lWx985Otr9c/cSJr+L7Pz85l7Qce7rz3c9nMPfd2r4FBdS8XOu9x9GBP+n3feX2GvaZsbb8+Nz7b7DbG6nx99t+n1r7ZrHVfHPd3v4b4Ordv9raPceXzze65uPH3L26dlyb93vavjbiOt87R4POy8zpeu3axez6oH3V6g8XU0o0nX6nk/PTr9yyqJuxBoy0cOnqrQTZJeW+u0YBceOho93XuFewG3ch3NrijMbl29VK2cvncWHo6oyHXrqgmo8h5raJAPRqqcd6LvO+nWkcK17j0r5NJvO/xuxOvsazrM+pq+q9zdeN80veO/rUewWV+9sFcYe524jH6j3Oy9fjXGq1xTuKoU+iJ62PreLxQg3a36zgCYFwbK38+l9SUPPa+16rTG6xfv/fe939eyfPH1Nq1zr0lxZFPhD0oJ+x1GtRVfBDdLpREI3rpyL9lzxz6bqnPGw3JeMw4IgAsfXgmdwDJ1QDunMsq6zLyhr0qXmM01m93ruvyvkfjffHRE6X/7kQYiJATR7zOaNSn0uscAbwfXNoHH554T3yc6zh++cRTyYeefmdFXCNlhODtATD+/REglj8+2z2EvrQ7RNTp3V6/fq+qcxVTbFu//ZnfpYZTswcJiYbM+g9fKr3Bv1sAeL39k2ztB7/oTq+i2sbx8neeyv7y769M7H2PqUNFV2SL749r80yncTDuTpJ4ndH4GeZ1lt1gXWk/m/114Vfd83ay4AjVOPRDT5ybeG1VzE7YqyNg/UcvdV9fmUFvZ6dA/9qI5yPNe5o6vQKf++r3GDMje5CAaLCtHl8sPB1uVNFo/2OnAf/jtV+XOspHPhG044N2XA3jvcJUTB2KRtHtRs+i4bb07dPZc986MfHzU+R1limmpsbI1OGEO0KikRadAzFFMka5qhwFjWskgufO6afj/vdHx8Mbl3+fLay95maSkCrr9EJ00qyNoZPo6t/+mh38xr+M7XeoKur3hD1gAg3+GGGr8sMxRi260wjd7CcaKGJEr8r3PUZIYjGRQY3lqjohir7OMhuJy088lXTI2y30xPnp1nmeXZ74gi5V378i8HYXf3nnZVPRElBlnd728DIOj731fPceESPXTaN+r9lM44QpD3rbb/YRQJhM0IuAncL7Ho3lGJXZLejFtM1Ugk+8znEtrrM17WyxO4p4uKbTmmMUNEbpY0Ry2u5fh3uvw95h1aq6Tm+cfvqH33Q7UmIU/e2Njxr5b7T/nrAHlCwa06kEvb4IIFXWSE1LwI/znJKdQaoffvYn9sEfDcmyr894vKj/muQUxHGKUYfdwntTg97OwEc1qq7TG6cIdxHy+mKGwc0GjiKr3xP2gJKl2JgOK50gondvfA2iVBukW1Mlt2oHo0Yv1RGulRKDcoywxmje/oZd74NGa5sa9LYHvkkEXXb5PDux2LjfoxArA++cPt7fMqGJ+vV7CHvAiOJmmmpjOqaDTXIq2DSJhmjKDaLY+iECXxWLsRS5PsuYbhzvRWojrHUIfDO93v9Ur+OtRWus0jlJUXtcdZ3euEQd7G61oP0tE5poHDMoEPZgqkRjOvUwFa/P6F654sMz9amC0VBefuLp5M9ljDyOGvTGvc1FKu9n2feaOHeTXj22qMO2k5lcGOoE65Q7h0bRr9MbeB+qcMuEcVO/J+wBozRUj/xb8tNd9vc2kabM970eU2PqULsWYWPY/SFjVHAagl5f1PCVtZdm3BOaUtvI6KLjcqWho+M76/QG/k6cXVa/h7AH7Gww1aOxFEu5U45obDd1mlOdrs8YXW3y1M1BotFWRi99TNeDW9fV8emp0xtE/R7CHvA1dflwjBu9aRzT9Z7XSfuBYjUlTV4t8HbKqMONRl/q0zeZnAj+TZwuG6N0g+r0BlG/h7AH1LdB7SZPoqKhWaQzYvk7T0916N6+2uowLNpEX5Pr9BY/2LtObxD1ewh7QC3NW+iAlK/P2blc3xedFlXW6cVowRuXf5+dfvfV7Hv/+1/dI/4cfzfJep+oFx5G1DkanSY0uU4vfh9XLp8bPgSr30PYA+oX9uacBBK+PvN1RlRZdxINyNZvf9atAVrdON+d8hVH/Dn+Lv7fhSFGEoYRgXeY0T2jevQ1tU4vfgcXP3hzpMdQv4ewB9TOzD1680n4+szR6IxRvaoWx4mgF4Fur/qf+H/td16eWOArOroXgdpWBoQm1+nd7vc0r6bX71mlW9gDGsY0TtK+Pm8/8rxYUW1R1O8UW9FveSKvq+hqwFblZeu6UaeXV5Pr92IK7yi1vwh7QGLU6ZCy2408x8hfVfvC5Q16fRufbXZHAifxOx01eHkVXfV03GJZ/GhIv9hrUE9qRHSaqdMbIhw3uX7vuPq9urnLKYBqxQfC2tVL2fr1K7casNGLapnz5r/vqxsfdRr5n/YaVPd3R11SC9h1eZ27Bq6KRqXe7p6vzcI/t/zx/53IQjJxf8nTwI1GfirT9rb2Pvt1d5rcLb3pcvE6l5942obvY6JOr7h+/d573/95485b3BNiSm+MiCLsATkahbvVCsRNNIqhX1AQ3Uj9Wq6dYiRq7Qe/SKaBPej6jNcZWxlUucJl3lBTSeN44/xQPxdTySLUjLujJ28oSmVULxrlUdc4qKYqgnVMg11pP5v8NVk36vSG16/fa+LneEzpjU7qYe91TJZpnFCRrZ7qwR82Me//1T+ddaIaGvB301+sI4XpP3tdnzd6DaWq61Jut/BKVQuzrF27OPTPrm9OZlpinj0052fTaOTnbZSncE02iTq90anfQ9iDKbb04ZnbNmCWPxb2GtfI+MPe04bimkjhfc9zfY5rCtSkwsy4DDOF81bY603nHvv5yRGEU9h6JUbBizTKi9ZKsjt1eiWGZvV7CHswnfJ82ESj0QIEzRHvZZ4gkMLUmDyjU/1ph0mGvYpG9UbtxR8lKJYdhqsaGf2nTofz/1P4/MXoOaNRp1eeJu+/16/fQ9gDdvnAKbPRTT3kHaFYTyDg5w0dkwonRaUwKjXUeZ9QeL5dkJtJoKEfHQnDXF/qiEbT5Dq9qO28UcEoW5P334upvvbfE/aAHYp82Nz4+xdOWEP0V7RMXaHOiKtpdkbcblsGsj3rbeZnqw/LsQDEMCY1FbaJmlynF6u5Vtk5pX6PqliNEyDRwFVV7/qNBtSXVDUFMRo8SyOsvhdbW0zutd4/sPGbwsjesJ0j66a+D33tNrVOLxY7S2HEN+r3Np58pXFTZPv1e/NvPe8XSdgDYFoC1zSKbRPqstR61DUOGpmdT2Aa39oIoyBVdpbUVbPr9NLYE87+e1TBNE4AGmXmblM4p53OkmKaXqeXEvV7CHsAMIIU6s3qoMrtKUiHOr3JU7+HsAcATLX1zeEXWkl14aDUqNOrMGTbfw9hDwCYVqZijp86vWqvb/vvIez5MAOAsUhh03Sqo06veur3EPamQCpLRJe9oEEKe1zVZU8zAMb/ucQ/qNNLh/o9xs3WC3TFggZl1jjMH6h+gYQ63eyB8tz4+9+chCn/XEqhwzH1IF3FiFLs7fjMoe+O7fFjVG/x0RPdo/h944tOUHxt6BlX892pi08P/X6MW1UjiHvt54mwxyR/GfeV2/OiRxaoik21SaHDMWUrl89V87v5w5fG+vhRfzjs9OQfr/16pNKauO9EqBlnmB2pXXbPvfbAm1KmcVYslamGZS7BHUGv6jqACxp7AJCMlGsE37j8+1IC8OIHbybb/lBDJ+xRWdhLY2i7ffDhEh+r+r2bLHwD0+3K56YN1f2zqT3CAjLqhNKSco3g1sqdb5bW9oipoKluqaCGTthjihslc/tmSwtpKfQcrV+/4sICYYVhz18Cn0tR6zOMmF0yt0+DNhUp7+V388vR6vR2b3+ku+2DPfCEPaoKJptpDPkvHTldyk09hfnqqZxTQNiroxQWuRl2xkkKs0v4h5T38otQNo4a35gSGlNDU2QPvOljgZYUwt71K9nJ1uOVv44oao5RudWN80M/xvITTydzToHpvq8+k02+4ylmaqz8+VwDzl/1HWYxOhcrHBZ9LWWWJTCaaajTGxwk3+xevyn++2NK7drVSyO19xD2KGDt2qXshUReS0y1aL/z6VAf9AuHjiYRWlNpqADTdw+IgLLUkE2SI7hWPR1y8dF/7U6zyyumcMZnEdWbljq9Qfr1e38c8wqko7T35t+6YhbEFDCNM4WwV+L+dqOKqRZrP/hF4WkwMQX09UTm5L+98ZGLCtxXK3vu+URHMopKoREYZQFFFpSI/dX22/qnctNWpzdIdDr99A/q9xD2SCygxA3gve//vBv69lpsJW7m8cG68eQr2Qsl1PuV1si7dtEFBVR2X114qBkjS6l0REaDNM/erRGyh9lMm/G8Z9NWpzfI8sdnk+2EVr83HUzjTOXGuHE+mSmQfVHD19+cNKY8bO8Fiw/VVG/k5qAD3bBy7WIl99WYRrj04ZnabwGTynT4aJB2Ox/fXR442hizUVaPP2dULwHTXKc38J6w9lq2/qOXklwlVv2esMcEA8ryl08l+0F1uCbTkiKUmn8O9O+rv3xi8r3WcR9faT/bDSe1DssJlRjEZ9Bf/v2V7ghJhPh+EI2Ox5iBcuwBi7KkIOU6vahBHXed3iDR8XPq7LL6PSphGmci4kawqtZsZDFdAiBEw6Wq6VMxohiBLwVb9VPPFq4ljM+lC4ktdhXnNQJ8lBrEEX8W9LKErrOfJPv6ImxVOdqufg9hj2zp/P84CSO42Q3MpiEA/1DFlK2+WFxk/YcvFVpgpCz9VSlj+mOMiMVrmbnnG7U6f9RLynV6EbJSmJasfg9hb8pFL3Sqm3DWQdxE614jA5TcAN04352+VWUDKsJWjKyNe7PvePxYGTkC5l8XftVdIXnUUS8daOT6/E24Ti/CVUqzfqJ+r8p70l5iCu5eC/NRT2r2EhOje9EDSzExqmcKJ7DrffXDM5VvDRP39Thu9qbsx6bv690a408L1cnEVMwYoWvtm+2OGM4fmOt+HVdDO15bTOU83JDtJChf6nV6RfZpnAT1ewh7Uy5+uV7909lkb5ypMqoHDGy8XD6XLX37dBIr4cU0t27wy77eqRdBcOdUsxRWPo776+sJ12JRHXV6w+nX71WxgFSee1RMyZ1/63kXeEOYxpmg6IVOdYg/RXGujOoBe1lY+3XyrzEaWf0tb/pHCjVQMZXzps40drs21OkNTf0ewt4U6w/xk78RZ1QP2EtsIxCzJhjuM0mHGl8LK+r0Smi/qN9D2Jta0Rv14xr0RFftxfNnktoLCkhXzJq4kHBPf9IN+07DuW6je0Yjx0edXjlS79yPKbpVrCaMsDc1os7E6pyDvX/tUrbUCXsAeRtW0QgUAoY7d3W739o2YjzU6ZXL/nsIe1MuGiYC39dF77yprsAwDatT777qRAwhRvfqMjIaozuridZD1Z06vfH8bqnfQ9gT+JyIbUGv/c7L6vSAocTUb9Pkh/88qsfr9P6OJZSo0xvr75b6PYS9Kf+ATXWYX9AD6iam+J1+91VTOguqQz15TPFXy10+dXrjpX4PYY9uj9X3/ve/prZxEivpxb4vgh5QhthSIDqPbHVTPCinOtvkZq8uk3Kp05uM1Ov3VtrP+mUQ9hi36K1s/fZnyc7tHteHd/TAL35gZBMov3E1/7vnp+qeWoZUywti+ubGZ8J72dTpTU7K9Xux9+fSkdN+IYQ9xq071P/ucjcANb1HOhoTEW6jBx5gnPfUmJ5oWmd9A1/M/vBZMYbwoU6vkt+tVNt3L3TCXvvgI34xhD0mIT7UIghFr1bTGihRcxFTVuOGZ9omMAkxPTHuqTZfL9YoTWHaWYROsz/Kp06vGqnX760efy6bSXSkF2GvkaJXa2blP7u90nUf6Yteugh5UUejwB6oopEVoeGb//0zqyAX+Ax67K3nK9uW4cXzZ9TpjYE6vWolv//eCfvvCXtMXL9XOsJSNFLqMtoXATVuaNG4iqlUQh5Qtaj7igDxLyv/2b0/1bUjLQJYjFTG58I4763d2sdO4IvgNanPnnhP4t9Vt83e60KdXvXU71GGu5yC5okP9P6HekzBaB98uPt1bl86S+bGNM2Yhhqvcxpu2EA9xchBNLjimD/wYLbw0NGs/cAjydYw9bcdiPtqfJ30yEcErzhXcZ4WHz0xls+dm9veE9P8xxQy1OklIzqd1n/0UlJtuL6o31uz1Uny7viqI883Rm+d3rN6iykZ8wfmug2WKK6Nr5PotYue5fXuceVWAyQF8e+fuecb1TQg//633CE33rfWffdX2nnQpNdZZWH5xmef5l4p0PVZ7vtetqhXiWspOtPivhq93JMSYSfenxt//+LWfTW+prgKZT8gl9HhGI386CSMI0/Ii/dofnau9tdkjJ68sMsIyh2v/cf4QnvCIzbTGPLj9yjVTc3jvhMzy5isQfcFYY+Bjd/uh2KvFy8abkU3zuw3Ovq/+BufbxZq2ALUXT/4tvbN3rqHDtu5sD0wdINdp3FbJISnqB++2p1gPHPPvd2QvJd+gE2pkzClRt04wx7QnLBnGie3PkQtWQ0wvG5H184OLp2kt0Rg3V5mAMD4WaAFAABA2AMAAEDYAwAAQNgDAABA2AMAAEDYAwAAEPYAAAAQ9gAAABD2AAAAEPYAAAAQ9gAAAIQ9pwAAAEDYAwAAoAbucgoAANK0dP5M9wAYhpE9AAAAYQ8AAABhDwAAAGEPAAAAYQ8AAABhDwAAQNgDAABA2AMAAEDYAwAAQNgDAABA2AMAABD2nAIAAABhDwAAAGEPAAAAYQ8AAABhDwAAAGEPAABA2AMAAEDYAwAAQNgDAABA2AMAAEDYAwAAEPYAAAAQ9gAAABD2AAAAEPYAAAAQ9gAAABD2AAAAhD0AAACEPQAAAIQ9AAAAUgh77YOPOFsAAAA1Cns3nQYAAIDmhb31PN/Yum/W2QIAAKhR2Mtlbp+wBwAAUKewt573m43uAQAA1Cfs3cgf9u53xgAAAGoS9tbyfnP7gYedMQAAgJqEvdwje/MH5pwxAACAmoS93DV787MPOmMAAAA1CXvh/TzfHCtyWqQFAACgPmEv9+he+4FHnDUAAICahL213GHvoLAHAABQl7CXe2TvVOtxZw0AAKAmYW+jc1zJ8wP77743mz9goRYAAIA6hL2wmveHFh466swBAADUJOyt5Q57h4Q9AACAuoS9GNm7meeHYirnqdYRZw8AAKAGYa8f+HIxugcAANDAsHey9bgN1gEAAGoU9m7m/WGjewAAAPUIe/3Al8vioyeymbvvdRYBAABqEPaW8/5wLNQSgQ8AAID0w95653g/7wMY3QMAAKhH2AsreR/A6B4AAEC9wt6VvA8SYc/KnAAAAOmHvbCU90FidG/5iaedTQAAgBqEvZWswOhe7LvXPviIMwoAAJB42AtLRR5spf0Ti7UAAADUIOytZAVG9+b2zWZL3z7trAIAACQe9sJSkQd87lsnTOcEAACoQdhbyQrsuxdWjz9nOicAAEDiYS8sFnnQWJ1z9cSiswsAAJB42FvvHK8WeeBjDzycrbSfdYYBAAASDnthKSuwWEt45tB3s4VDR51lAACAhMPejc6xUPQJXm//JDvVOuJMAwAAJBr2wlpWcDpniP335g886GwDAAAkGvZCrLxyocgPxIItaz/4hcAHAACQcNgLpzrHTYEPAACgWWFvIxuifk/gAwAASDvshdXO8eIwge+PP3zJKp0AAACJhr2w1DneGOYHY5XOpSOnvQMAAAAJhr2wkBVcsKXvhU7YWz2+mM3cfa93AgAAILGwF9rDBr6TrcfV8QEAACQa9m6MEvgOd4Je1PEtPnrCOwIAAJBQ2Bs58IVfPvFUd5Svdd+sdwYAACCRsFdK4Dv2wMPZ+g9fsngLAABAQmGvlMAX2zPE4i0bT76SnWod8S4BAAAkEPa2B763R3mQuX2z2Znjz3WndrYPPuLdAgAAqDjs9QPfqWzIffi2i6md733/593QZ6QPAADg9u6awHMsdI61zvF6GaEvjiufb2bLH5/NVv58Lrvx5RfeRQAAgB3unNDzrHSOxzrHlTIeLKZ3xsqdf134VbbSftZoHwAAwA53TfC51jvHfC/4nSzrQZ859N3ucfPLL7LVjY86x/ls7epFI34AAICwN0H9Or6FzrHcOfaX9cCxgmc/+IUL1z/J1q5d7AS/S9n69SvZxmeb3m0AAGBq3PHVV19V9dytbGuU79gknixG/tY7ATBC38Znn3b/3B/9i/8WBgEAgNTFfuQv5NyTvMqw13eqF/r2e+sAAADKcWcCr2E12xrle9HbAQAAUI4URva2i9C31Dme8dYAAAAM787EXs9GtrV4yzezEjZjBwAAmFapjezt1Mq2Rvqirk9NHwAAQEPCXt9MtjXit9g55rxtAAAAzQh727V7wc9oHwAAQIPC3nanekcEQCN+AAAADQl72833Ql//MOoHAAAIew3U6gXA/hH/fdhbDgAATIP/L8AAjWVd3eHt63gAAAAASUVORK5CYII=" alt="ufpr" style="height: 70px; position: absolute; width: 17%; top:0; right:0"/></p>
+<style>
+<style> 
+body {
+  color: #708090;
+  font-family: Cailibri
+  backgroud-color: #F5F5F5
+}
+</style>
+<div id="metodologia-e-objetivos" class="section level1 tabset tabset-fade" number="1">
+<h1 class="tabset tabset-fade"><span class="header-section-number">1</span> Metodologia e objetivos</h1>
+<p><font size = 4></p>
+<ul>
+<li>Método: Quantitativo</li>
+<li>Dados secundários: Agência Nacional de Saúde Suplementar (ANS)</li>
+<li>Universo: Operadoras de planos de saúde</li>
+</ul>
+<p><font size="2"> Para mais informações acessar: </font> <a href="http://www.ans.gov.br/anstabnet/notas_beneficiario.htm">Clique aqui</a></p>
+<p><font size="2">Os dados disponíveis são oriundos do Sistema de Informações de Beneficiários (SIB),Sistema de Cadastro de Operadoras (Cadop) e Sistema de Registro de Produtos (RPS), todos geridos pela ANS </font></p>
+<p></font></p>
+<div id="descrição-dos-dados" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <font size = 5> Descrição dos dados:</h2>
+<p><font size = 4.5></p>
+<ul>
+<li>Dados financeiros: 902 operadoras</li>
+<li>Dados sobre reclamações: 1315 operadoras</li>
+<li>Dados sobre beneficiários:476 operadoras</li>
+<li>Merge: 425 com correspondência exata pelo ID</li>
+</ul>
+</div>
+<div id="objetivo" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <font size = 5> Objetivo:</h2>
+<p><font size = 4.5></p>
+<ul>
+<li>A partir dos dados da ANS, apresentar os principais aspectos relacionados aos beneficiários, financeiro e reclamações, destacando a posição da Unimed BH em relação a concorrência.</li>
+</ul>
+</div>
+</div>
+<div id="análises" class="section level1 tabset tabset-fade" number="2">
+<h1 class="tabset tabset-fade"><span class="header-section-number">2</span> Análises</h1>
+<p><font size = 4.5></p>
+<p><font size = 4.5></p>
+<div id="beneficiários" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> BENEFICIÁRIOS:</h2>
+<p><img src="BENEFICIARIOS%20(1).png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="BENEFICIARIOS%20(3).JPG" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="financeiro" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> FINANCEIRO:</h2>
+<p><img src="FINANCEIRO%20(3).JPG" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="FINANCEIRO%20(4).JPG" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="FINANCEIRO%20(5).JPG" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="FINANCEIRO%20(7).JPG" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="reclamações" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> RECLAMAÇÕES:</h2>
+<p><img src="RECLAMACOES%20(4).JPG" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="RECLAMACOES%20(5).JPG" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="RECL.JPG" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="RelaUnimed_files/figure-html/unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>O teste de correlation de Spearman’s* mostra que:<br />
+* p &lt; 0,05 (0,000000000003202)<br />
+* Estimativa = 0,3248271</p>
+<p>Há uma relação estatisticamente significativa. O sinal da estimativa é positivo, contudo, o resultado está muito distante da pontuação máxima (1). Logo, a quantidade de beneficiários (permanência/aumento) está pouco relacionada com a quantidade de reclamações.</p>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  TOTAL and 01.06.2022
+## S = 8453344, p-value = 0.000000000001501
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3345972</code></pre>
+</div>
+</div>
+<div id="considerações-finais" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Considerações finais</h1>
+<p><font size = 4.5></p>
+<ul>
+<li><p>É bastante perceptível que todos os dados (beneficiários, financeiro e reclamações) estão diretamente relacionados à COVID-19. Desde o início da pandemia, as operadoras cresceram exponencialmente. Muito embora a crise financeira - intensificada pela pandemia - tenha ocasionado uma expressiva taxa de cancelamento dos planos de saúde, o aumento das novas contratações foi significativamente maior, por dois fatores: i) a dificuldade de acesso a serviços de saúde na rede pública; e ii) o receio de infecção pela SARS-Cov-2;</p></li>
+<li><p>A Unimed BH foi a operadora que mais cresceu: sozinha aumentou em 4,2% o total de beneficiários em todo o setor de planos de saúde. Considerando apenas seus beneficiários, teve um crescimento de 7,7%.</p></li>
+<li><p>A análise do setor financeiro revela que as receitas das operadoras estão na casa dos bilhões de reais. A Unimed BH está entre as dez que mais possuem receitas gerais e advindas dos planos. Igualmente, a Unimed BH consta no ranking das dez maiores empresas em despesas..</p></li>
+<li><p>Sobre as reclamações, percebe-se significativos aumentos gerais. A Unimed BH, apesar de constar no “top 10” em reclamações, registra poucas reclamações em comparação com as empresas que ocupam as primeiras posições na lista. Por exemplo, no mês de agosto de 2022, a Unimed BH recebeu 1,2% do total de reclamações, enquanto que a Notre Dame Intermédica recebeu 12,8%. Considerando apenas essas duas empresas, haveria uma disparidade de cerca de 90% de reclamações.</p></li>
+</ul>
+<center>
+<p><kbd> <font size="4.5"> O cenário é bastante positivo para a Unimed BH, pois figura entre as maiores empresas em número de beneficiários e receitas, além de registrar poucas reclamações. </kbd></p>
+<center>
+<p><img src="images%20(3)%20-%20Copia.jpeg" width="364" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
